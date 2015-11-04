@@ -1,4 +1,4 @@
-[azukiapp/ruby](http://images.azk.io/#/ruby)
+[willian/ruby](https://hub.docker.com/r/willian/ruby)
 ==================
 
 Base docker image to run **Ruby** applications in [`azk`](http://azk.io)
@@ -7,15 +7,7 @@ Versions (tags)
 ---
 
 <versions>
-- [`latest`, `2`, `2.2`, `2.2.3`](https://github.com/azukiapp/docker-ruby/blob/master/2.2/Dockerfile)
-- [`2.2-node12`](https://github.com/azukiapp/docker-ruby/blob/master/2.2-node12/Dockerfile)
-- [`2.2.2`](https://github.com/azukiapp/docker-ruby/blob/2.2.2/2.2/Dockerfile)
-- [`2.2.0`](https://github.com/azukiapp/docker-ruby/blob/v2.2.0/2.2/Dockerfile)
-- [`2.1`, `2.1.4`](https://github.com/azukiapp/docker-ruby/blob/master/2.1/Dockerfile)
-- [`2.1.2`](https://github.com/azukiapp/docker-ruby/blob/v2.1.2/2.1/Dockerfile)
-- [`2.0`, `2.0.0`, `2.0.0-p598`](https://github.com/azukiapp/docker-ruby/blob/master/2.0/Dockerfile)
-- [`1.9`, `1.9.3`, `1.9.3-p551`](https://github.com/azukiapp/docker-ruby/blob/master/1.9/Dockerfile)
-- [`1.8`, `1.8.7`, `1.8.7-p374`](https://github.com/azukiapp/docker-ruby/blob/master/1.8/Dockerfile)
+- [`2.2-node12-qt`](https://github.com/willian/docker-ruby/blob/master/2.2-node12-qt/Dockerfile)
 </versions>
 
 Image content:
@@ -29,6 +21,7 @@ Image content:
 - Ruby
 - Bundle
 - ImageMagick
+- QT
 
 Database:
 
@@ -52,7 +45,7 @@ systems({
     // Dependent systems
     depends: [], // postgres, mysql, mongodb ...
     // More images:  http://images.azk.io
-    image: {"docker": "azukiapp/ruby"},
+    image: {"docker": "willian/ruby:2.2-node12-qt"},
     // Steps to execute before running instances
     provision: [
       "bundle install --path /azk/bundler"//,
@@ -81,34 +74,10 @@ systems({
 });
 ```
 
-### Usage with `docker`
-
-To create the image `azukiapp/ruby`, execute the following command on the docker-ruby folder:
-
-```sh
-$ docker build -t azukiapp/ruby 2.2/
-```
-
-To run the image and bind to port 3000:
-
-```sh
-$ docker run -it --rm --name my-app -p 3000:3000 -v "$PWD":/myapp -w /myapp azukiapp/ruby ruby app.rb
-```
-
 Logs
 ---
 
 ```sh
 # with azk
 $ azk logs my-app
-
-# with docker
-$ docker logs <CONTAINER_ID>
 ```
-
-## License
-
-Azuki Dockerfiles distributed under the [Apache License][license].
-
-[license]: ./LICENSE
-
